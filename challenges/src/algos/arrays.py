@@ -28,8 +28,7 @@ def kadane(array):
     maxUntil = 0
     for e in array:
         maxUntil += e
-        if maxUntil > maxSoFar:
-            maxSoFar = maxUntil
+        maxSoFar = max(maxUntil, maxSoFar)
         if maxUntil < 0:
             maxUntil = 0
     return maxSoFar
