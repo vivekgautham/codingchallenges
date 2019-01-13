@@ -19,5 +19,11 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.kthElementOfTwoSortedArray([4, 5, 6, 7], [1, 2, 3], 5), 5)
         self.assertEqual(arrays.kthElementOfTwoSortedArray([1, 2, 3], [4, 5, 6, 7], 5), 5)
 
+    def test_RGBSort(self):
+        self.assertEqual(arrays.rgbSort(['G', 'B', 'R', 'R', 'B', 'R', 'G']), ['R', 'R', 'R', 'G', 'G', 'B', 'B'])
+        self.assertEqual(arrays.rgbSort(['B', 'G', 'R']), ['R', 'G', 'B'])
+        self.assertEqual(arrays.rgbSort(['B', 'G', 'B', 'R', 'G']), ['R', 'G', 'G', 'B', 'B'])
+        self.assertEqual(arrays.rgbSort(['R', 'B', 'G', 'B', 'R']), ['R', 'R', 'G', 'B', 'B'])
+
 if __name__ == '__main__':
     unittest.main()

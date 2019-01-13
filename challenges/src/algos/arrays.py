@@ -90,6 +90,26 @@ def kthElementOfTwoSortedArray(array1, array2, k):
         ct += 1
     return elem
 
+def rgbSort(array):
+    """ Inplace sorting of an array containing RGB value in order 'R', 'G', 'B' """
+    low = 0
+    middle = 0
+    high = len(array) - 1
+    while (middle <= high):
+        if array[middle] == 'R':
+            array[low], array[middle] = array[middle], array[low]
+            low += 1
+            middle += 1
+        elif array[middle] == 'B':
+            array[high], array[middle] = array[middle], array[high]
+            high -= 1
+        else:
+            middle += 1
+    return array
+
+
+
+
 
 
         
