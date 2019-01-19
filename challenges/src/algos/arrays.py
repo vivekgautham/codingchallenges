@@ -107,6 +107,17 @@ def rgbSort(array):
             middle += 1
     return array
 
+def detectNonDupsInNDupsArray(array):
+    ones = 0
+    twos = 0
+    for e in array:
+        twos = twos | (ones & e)
+        ones = ones ^ e
+        common = ~ (ones & twos)
+        ones &= common
+        twos &= common
+    return ones
+
 
 
 

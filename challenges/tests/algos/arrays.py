@@ -25,5 +25,13 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.rgbSort(['B', 'G', 'B', 'R', 'G']), ['R', 'G', 'G', 'B', 'B'])
         self.assertEqual(arrays.rgbSort(['R', 'B', 'G', 'B', 'R']), ['R', 'R', 'G', 'B', 'B'])
 
+    def test_NonDups(self):
+        self.assertEqual(arrays.detectNonDupsInNDupsArray([6,1,3,3,3,6,6]), 1)
+        self.assertEqual(arrays.detectNonDupsInNDupsArray([13, 19, 13, 13]), 19)
+        self.assertEqual(arrays.detectNonDupsInNDupsArray([3,3,3]), 0)
+        self.assertEqual(arrays.detectNonDupsInNDupsArray([3,3,3,2]), 2)
+        self.assertEqual(arrays.detectNonDupsInNDupsArray([3,3,2,2,2]), 0)
+
+
 if __name__ == '__main__':
     unittest.main()
