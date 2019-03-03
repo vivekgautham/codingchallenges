@@ -118,6 +118,16 @@ def detectNonDupsInNDupsArray(array):
         twos &= common
     return ones
 
+def singleSellProfit(array):
+    if not len(array):
+        return 0
+    profit = 0
+    cheapest = array[0]
+    for e in array:
+        cheapest = min(cheapest, e)
+        profit = max(profit, e-cheapest)
+    return profit
+
 
 
 

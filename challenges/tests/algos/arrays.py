@@ -32,6 +32,11 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.detectNonDupsInNDupsArray([3,3,3,2]), 2)
         self.assertEqual(arrays.detectNonDupsInNDupsArray([3,3,2,2,2]), 0)
 
+    def test_singleSellProfit(self):
+        self.assertEqual(arrays.singleSellProfit([9, 11, 8, 5, 7, 10]), 5)
+        self.assertEqual(arrays.singleSellProfit([3, 3, 3, 3]), 0)
+        self.assertEqual(arrays.singleSellProfit([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]), 0)
+        self.assertEqual(arrays.singleSellProfit([2, 7, 1, 8, 2, 8, 4, 5, 9, 0, 4, 5]), 8)
 
 if __name__ == '__main__':
     unittest.main()
