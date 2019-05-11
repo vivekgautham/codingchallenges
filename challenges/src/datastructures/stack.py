@@ -2,7 +2,7 @@ import heapq
 from dataclasses import dataclass
 
 @dataclass
-class MaxHeap(object):
+class MinHeap(object):
 
     heaparray : list
 
@@ -15,14 +15,14 @@ class MaxHeap(object):
 @dataclass
 class Stack(object):
 
-    maxheap : MaxHeap = MaxHeap([]) 
+    minheap : MinHeap = MinHeap([]) 
     counter : int = 0
 
     def push(self, item):
-        self.maxheap.push((self.counter, item))
+        self.minheap.push((self.counter, item))
         self.counter -= 1
 
     def pop(self):
-        return self.maxheap.pop()[1]
+        return self.minheap.pop()[1]
 
     
