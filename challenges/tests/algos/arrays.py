@@ -8,6 +8,7 @@ class Test_Arrays(unittest.TestCase):
     def test_maxAreaRectangleHistogram(self):
         self.assertEqual(arrays.maxRectangleArea([1, 2, 3, 4, 5, 3, 3, 2]), 15)
         self.assertEqual(arrays.maxRectangleArea([2, 1, 1, 3, 4, 1, 3, 2]), 8)
+        self.assertEqual(arrays.maxRectangleArea([1, 3, 2, 5]), 6)
 
     def test_cycleInArray(self):
         self.assertEqual(arrays.cycleInArray([1, 2, 1, 8, 3, 5]), True)
