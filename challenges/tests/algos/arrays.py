@@ -38,5 +38,12 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.singleSellProfit([9, 8, 7, 6, 5, 4, 3, 2, 1, 0]), 0)
         self.assertEqual(arrays.singleSellProfit([2, 7, 1, 8, 2, 8, 4, 5, 9, 0, 4, 5]), 8)
 
+    def test_findMissingOne(self):
+        self.assertEqual(arrays.findMissingOne([2], []), 2)
+        self.assertEqual(arrays.findMissingOne([-2], []), -2)
+        self.assertEqual(arrays.findMissingOne([0], []), 0)
+        self.assertEqual(arrays.findMissingOne([4, 5, 6], [6, 4]), 5)
+        self.assertEqual(arrays.findMissingOne([4, 5, 5, 6], [6, 5, 4]), 5)
+
 if __name__ == '__main__':
     unittest.main()

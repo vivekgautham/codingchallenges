@@ -128,6 +128,14 @@ def singleSellProfit(array):
         profit = max(profit, e-cheapest)
     return profit
 
+def findMissingOne(fullArray, arrayWithElementMissing):
+    xorsum = 0
+    for each in fullArray:
+        xorsum ^= each
+    for each in arrayWithElementMissing:
+        xorsum ^= each
+    return xorsum
+
 
 
 
