@@ -1,4 +1,5 @@
 import collections
+import sys
 
 def countWays(n, k):
     if isinstance(k, collections.Iterable):
@@ -34,3 +35,14 @@ def allWays(n, k):
     for i in range(1, k+1):
         _findWays(i ,n, k, arr)
     return res
+
+def minimumCoins(total, denominations):
+    minCoins = [sys.maxsize]*(total+1)
+    denominations = sorted(denominations)
+    minCoins[0] = 0
+    for i in range(1, total+1):
+        for denom in denominations:
+            if denom > i:
+                break
+            minCoins[i] = min(minCoins[i-denom]+1, minCoins[i])
+    return minCoins[total]
