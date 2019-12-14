@@ -15,7 +15,7 @@ class MinHeap(object):
 @dataclass
 class Stack(object):
 
-    minheap : MinHeap = MinHeap([]) 
+    minheap : MinHeap = MinHeap([])
     counter : int = 0
 
     def push(self, item):
@@ -25,4 +25,3 @@ class Stack(object):
     def pop(self):
         return self.minheap.pop()[1]
 
-    

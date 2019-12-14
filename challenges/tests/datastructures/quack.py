@@ -14,7 +14,7 @@ class Test_Quack(unittest.TestCase):
         self.assertEquals(qk.pop(), 47)
         qk.push(38)
         self.assertEquals(qk.pop(), 38)
-        self.assertEquals(qk.pull(), 25)        
+        self.assertEquals(qk.pull(), 25)
         self.assertEquals(qk.pull(), 34)
         self.assertRaises(Exception, qk.pull)
         qk.push(1)

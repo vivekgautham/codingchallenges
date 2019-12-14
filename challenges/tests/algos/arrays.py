@@ -46,5 +46,10 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.findMissingOne([4, 5, 6], [6, 4]), 5)
         self.assertEqual(arrays.findMissingOne([4, 5, 5, 6], [6, 5, 4]), 5)
 
+    def test_findMinOperationToSortedArray(self):
+        self.assertEqual(arrays.findMinOperationToSortedArray([1, 2, 1, 4, 3]), 2)
+        self.assertEqual(arrays.findMinOperationToSortedArray([1, 2, 2, 4]), 0)
+        self.assertEqual(arrays.findMinOperationToSortedArray([1, 5, 4, 2, 3]), 4)
+
 if __name__ == '__main__':
     unittest.main()

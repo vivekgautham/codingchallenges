@@ -18,7 +18,7 @@ class Quack(object):
             del self.arr1[:]
             del self.arr3[:]
             raise Exception("Nothing to pop")
-        
+
         if self.arr2:
             self.arr2.pop()
         self.total -= 1
@@ -36,7 +36,7 @@ class Quack(object):
         return self.arr3.pop()
 
 
-        
+
 
 
 

@@ -15,6 +15,6 @@ class Test_Combinatorics(unittest.TestCase):
         self.assertEqual(combinatorics.minimumCoins(31, [25, 10, 1]), 4)
         self.assertEqual(combinatorics.minimumCoins(35, [25, 10, 1]), 2)
         self.assertEqual(combinatorics.minimumCoins(34, [25, 10, 1]), 7)
-        
+
 if __name__ == '__main__':
     unittest.main()

@@ -2,7 +2,7 @@ def findFirstSubstrIndex(s, x):
     i = 0
     j = 0
     while (i < len(s)):
-        if (s[i] == x[j]):            
+        if (s[i] == x[j]):
             j += 1
             if j == len(x):
                 return i - j + 1
@@ -26,7 +26,7 @@ def levenshteinDistance(s, t):
             if e1 == e2:
                 mat[i1+1][i2+1] = mat[i1][i2]
             else:
-                mat[i1+1][i2+1] = 1+min([mat[i1][i2], mat[i1+1][i2], mat[i1][i2+1]])            
+                mat[i1+1][i2+1] = 1+min([mat[i1][i2], mat[i1+1][i2], mat[i1][i2+1]])
     return mat[-1][-1]
 
 def longestPalindromeSubstr(s):

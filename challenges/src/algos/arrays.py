@@ -136,6 +136,27 @@ def findMissingOne(fullArray, arrayWithElementMissing):
         xorsum ^= each
     return xorsum
 
+def findMinOperationToSortedArray(array):
+
+    sm = min(array)
+    lg = max(array)
+
+    minOps = [[sys.maxsize for k in range(lg+1)] for e in range(len(array))]
+    for j in range(sm, lg+1):
+        minOps[0][j] = abs(array[0]-j)
+
+    for i in range(1, len(array)):
+        minInRow = sys.maxsize
+        for j in range(sm, lg+1):
+            minInRow = min(minInRow, minOps[i-1][j])
+            minOps[i][j] = minInRow + abs(array[i]-j)
+
+    res = sys.maxsize
+
+    for j in range(sm, lg+1):
+        res = min(res, minOps[len(array)-1][j])
+
+    return res
 
 
 

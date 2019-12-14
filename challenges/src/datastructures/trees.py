@@ -10,7 +10,7 @@ def buildTree(inorder, preorder):
 
     def _buildTreeRecurse(inorder, preorder, instart, inend):
         if instart > inend:
-            return None        
+            return None
         tmpNode = Node(preorder[_buildTreeRecurse.preOrderIndex])
         _buildTreeRecurse.preOrderIndex += 1
         if instart == inend:
@@ -22,7 +22,7 @@ def buildTree(inorder, preorder):
         tmpNode.left = _buildTreeRecurse(inorder, preorder, instart, inIdx-1)
         tmpNode.right = _buildTreeRecurse(inorder, preorder, inIdx+1, inend)
         return tmpNode
-    
+
     _buildTreeRecurse.preOrderIndex = 0
     root = _buildTreeRecurse(inorder, preorder, 0, len(inorder)-1)
     return root
@@ -30,7 +30,7 @@ def buildTree(inorder, preorder):
 def levelOrderTraversal(root, lo=[]):
 
     if root is None: return lo
-    
+
     q = deque()
     q.append(root)
 
@@ -45,4 +45,4 @@ def levelOrderTraversal(root, lo=[]):
     return lo
 
 
-     
+

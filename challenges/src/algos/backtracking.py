@@ -1,6 +1,6 @@
 
 def nQueens(n, board=[]):
-    
+
     def isValid(board, curcol):
         currow = len(board)-1
         for row, col in enumerate(board[:-1]):
@@ -9,7 +9,7 @@ def nQueens(n, board=[]):
         return True
 
     if len(board) == n:
-        return 1 
+        return 1
     count = 0
     for col in range(n):
         board.append(col)

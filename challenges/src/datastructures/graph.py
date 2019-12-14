@@ -27,7 +27,7 @@ class DiGraph(object):
         fn(start) # function to do something with this node
         for e in self.adjList[start]:
             if not visited[e]:
-                self._dfsRecurse(e, visited, fn)    
+                self._dfsRecurse(e, visited, fn)
 
     def dfs(self, start, fn):
         visited = {node:False for node in self.adjList.keys()}
@@ -56,10 +56,10 @@ class DiGraph(object):
 
 
 
-        
 
-        
-            
+
+
+
 
 
 
