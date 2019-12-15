@@ -51,5 +51,9 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.findMinOperationToSortedArray([1, 2, 2, 4]), 0)
         self.assertEqual(arrays.findMinOperationToSortedArray([1, 5, 4, 2, 3]), 4)
 
+    def test_hIndex(self):
+        self.assertEquals(arrays.hIndex([2, 7, 9, 12, 14]), 4)
+        self.assertEquals(arrays.hIndex([0, 0, 2, 3, 4]), 2)
+
 if __name__ == '__main__':
     unittest.main()

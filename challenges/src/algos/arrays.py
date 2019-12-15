@@ -50,7 +50,7 @@ def maxRectangleArea(array):
         curMax = stack.pop()
         area = array[curMax] * (i -1 - stack[-1] if stack else i)
         maxArea = max(maxArea, area)
-    
+
     return maxArea
 
 def cycleInArray(array):
@@ -59,7 +59,7 @@ def cycleInArray(array):
         if (p < 0 or q < 0 or p >= len(array) or q >= len(array)):
             return False
         p = array[p]
-        if p == q: return True  
+        if p == q: return True
         if (p < 0 or p >= len(array)):
             return False
         p = array[p]
@@ -67,7 +67,7 @@ def cycleInArray(array):
         q = array[q]
         if p == q: return True
     return False
-        
+
 def kthElementOfTwoSortedArray(array1, array2, k):
     ct = 0
     i = 0
@@ -158,11 +158,23 @@ def findMinOperationToSortedArray(array):
 
     return res
 
+def hIndex(citations):
+    left = 0
+    right = len(citations)-1
+
+    while (left <= right):
+        mid = left + (right-left)//2
+        if citations[mid] >= len(citations)-mid:
+            right = mid-1
+        else:
+            left = mid+1
+    return len(citations) - (right+1)
 
 
 
 
-        
+
+
 
 
 
