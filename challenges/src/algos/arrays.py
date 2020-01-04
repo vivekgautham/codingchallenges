@@ -1,4 +1,5 @@
 import sys
+from random import randint
 
 def isTwoElemSum(sum, array):
     diff = set()
@@ -170,6 +171,61 @@ def hIndex(citations):
             left = mid+1
     return len(citations) - (right+1)
 
+def sortedArrayMedian(arr):
+    if len(arr) % 2 == 1:
+        median = arr[len(arr)//2]
+    else:
+        median = 0.5*sum([arr[len(arr)//2-1], arr[len(arr)//2]])
+    return median
+
+def naiveMedian(arr):
+    arr.sort()
+    median = sortedArrayMedian(arr)
+    return median
+
+def median(arr):
+    if len(arr) <= 5:
+        return naiveMedian(arr)
+
+    if len(arr) % 2 == 1:
+        _quickSelectMedian(arr, 0, len(arr)-1, len(arr)//2)
+    else:
+        _quickSelectMedian(arr, 0, len(arr)-1, len(arr)//2)
+        _quickSelectMedian(arr, 0, len(arr)-1, len(arr)//2-1)
+    return sortedArrayMedian(arr)
+
+def isSortedUpto(arr, k):
+    return all([a <= b for a, b in zip(arr[:k+1], arr[1:k+1])])
+
+def _getLastIndexOf(arr, pivot):
+    resIdx = None
+    for idx, each in enumerate(arr):
+        if each == pivot:
+            resIdx = idx
+    return resIdx
+
+def _quickSelectMedian(arr, l, r, comp):
+    if r-l < 1:
+        return
+    pivotIdx = randint(l, r)
+    pivot = arr[pivotIdx]
+    partition(arr, l, r, pivotIdx)
+    pivotIdxNew = _getLastIndexOf(arr, pivot)
+    if pivotIdxNew > comp:
+        return _quickSelectMedian(arr, l, pivotIdxNew-1, comp)
+    else:
+        return _quickSelectMedian(arr, pivotIdxNew+1, r, comp)
+
+def partition(arr, lowIdx, highIdx, pivotIdx):
+    pivot = arr[pivotIdx]
+    arr[highIdx], arr[pivotIdx] = arr[pivotIdx], arr[highIdx]
+    i = lowIdx-1
+    for j in range(lowIdx, highIdx):
+        if arr[j] <= pivot:
+            i += 1
+            arr[i], arr[j] = arr[j], arr[i]
+    arr[i+1], arr[highIdx] = arr[highIdx], arr[i+1]
+    return arr
 
 
 
