@@ -29,5 +29,24 @@ class Test_Trees(unittest.TestCase):
         res = trees.levelOrderTraversal(root)
         self.assertEqual(res, [20, 10, 26, 4, 18, 24, 27, 14, 19, 13, 15])
 
+    def test_Fenwick(self):
+        arr = [2, 1, 1, 3, 2]
+        fenwick = trees.FenwickTree(arr)
+        self.assertEqual(fenwick.getRangeSum(0), 2)
+        self.assertEqual(fenwick.getRangeSum(1), 3)
+        self.assertEqual(fenwick.getRangeSum(2), 4)
+        self.assertEqual(fenwick.getRangeSum(3), 7)
+
+        arr = list(range(1, 17))
+        fenwick = trees.FenwickTree(arr)
+        self.assertEqual(fenwick.getRangeSum(2), 3*(3+1)/2)
+        self.assertEqual(fenwick.getRangeSum(7), 8*(8+1)/2)
+
+        arr = list(range(1, 33))
+        fenwick = trees.FenwickTree(arr)
+
+        self.assertEqual(fenwick.getRangeSum(18), 19*(19+1)/2)
+        self.assertEqual(fenwick.getRangeSum(31), 32*(32+1)/2)
+
 if __name__ == '__main__':
     unittest.main()

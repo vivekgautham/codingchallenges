@@ -1,4 +1,6 @@
 from collections import deque
+from dataclasses import dataclass
+
 class Node(object):
 
     def __init__(self, value, left=None, right=None):
@@ -43,6 +45,35 @@ def levelOrderTraversal(root, lo=[]):
         if s.right:
             q.append(s.right)
     return lo
+
+@dataclass
+class FenwickTree():
+
+    inputArray : list
+
+    def __post_init__(self):
+        self.sumArray = [0]*(len(self.inputArray)+1)
+        for i, each in enumerate(self.inputArray):
+            self.update(each, i, len(self.inputArray))
+
+    def update(self, element, idx, n):
+        idx = idx+1
+        while idx <= n:
+            self.sumArray[idx] += element
+            idx += (idx & (-idx))
+
+    def getRangeSum(self, en):
+        s = 0
+        idx = en+1
+        while idx > 0:
+            s += self.sumArray[idx]
+            idx -= (idx & (-idx))
+        return s
+
+
+
+
+
 
 
 
