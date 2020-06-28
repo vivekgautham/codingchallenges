@@ -78,7 +78,12 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.median([4, 2, 1, 3]), arrays.naiveMedian([4, 2, 1, 3]))
         self.assertEqual(arrays.median([9, 1, 0, 2, 3, 4, 6, 8, 7, 10, 5]), arrays.naiveMedian([9, 1, 0, 2, 3, 4, 6, 8, 7, 10, 5]))
 
-
+    def test_maxSumWithoutAdjacentElements(self):
+        self.assertEqual(arrays.maxSumWithoutAdjacentElements([6, 13, 97, 100, 7]), 113)
+        self.assertEqual(arrays.maxSumWithoutAdjacentElements([1234]), 1234)
+        self.assertEqual(arrays.maxSumWithoutAdjacentElements([7615, 2060, 7659, 6763, 6005, 6243, 2982, 5528, 2945]), 27206)
+        self.assertEqual(arrays.maxSumWithoutAdjacentElements([5, 5, 5, 5, 5]), 15)
+        self.assertEqual(arrays.maxSumWithoutAdjacentElements([1, 1111, 2, 3, 4444]), 5555)
 
 
 if __name__ == '__main__':

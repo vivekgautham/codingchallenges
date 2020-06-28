@@ -227,7 +227,15 @@ def partition(arr, lowIdx, highIdx, pivotIdx):
     arr[i+1], arr[highIdx] = arr[highIdx], arr[i+1]
     return arr
 
-
+def maxSumWithoutAdjacentElements(arr):
+    sumExcludingLatest = 0
+    sumNotIncludingCurr = 0
+    sumIncludingLatest = 0
+    for curr in arr:
+        sumNotIncludingCurr = max(sumExcludingLatest, sumIncludingLatest)
+        sumIncludingLatest = sumExcludingLatest + curr
+        sumExcludingLatest = sumNotIncludingCurr
+    return max(sumNotIncludingCurr, sumIncludingLatest)
 
 
 
