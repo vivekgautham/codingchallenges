@@ -1,3 +1,4 @@
+import functools
 
 def longDivision(numerator, denominator):
     print(numerator, denominator)
@@ -22,3 +23,17 @@ def longDivision(numerator, denominator):
     else:
         result = result.format(q=quotient, r=''.join(rl))
     return result
+
+def gcd(a, b):
+    if a > b:
+        gcd(b, a)
+    if a == 0:
+        return b
+    else:
+        return gcd(b%a, a)
+
+def gcdInBulk(numbers):
+    return functools.reduce(gcd, numbers[1:], numbers[0])
+
+
+

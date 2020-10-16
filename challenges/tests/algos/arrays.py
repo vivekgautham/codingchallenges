@@ -10,6 +10,7 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.maxRectangleArea([1, 2, 3, 4, 5, 3, 3, 2]), 15)
         self.assertEqual(arrays.maxRectangleArea([2, 1, 1, 3, 4, 1, 3, 2]), 8)
         self.assertEqual(arrays.maxRectangleArea([1, 3, 2, 5]), 6)
+        self.assertEqual(arrays.maxRectangleArea([2, 4, 5, 6, 3]), 12)
 
     def test_cycleInArray(self):
         self.assertEqual(arrays.cycleInArray([1, 2, 1, 8, 3, 5]), True)
@@ -85,6 +86,10 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.maxSumWithoutAdjacentElements([5, 5, 5, 5, 5]), 15)
         self.assertEqual(arrays.maxSumWithoutAdjacentElements([1, 1111, 2, 3, 4444]), 5555)
 
+    def test_smallestNumberNotInSubSetSum(self):
+        self.assertEqual(arrays.smallestNumberNotInSubSetSum([1, 2, 3, 10]), 7)
+        self.assertEqual(arrays.smallestNumberNotInSubSetSum([3, 4, 5]), 1)
+        self.assertEqual(arrays.smallestNumberNotInSubSetSum([1, 2, 3, 4, 5]), 16)
 
 if __name__ == '__main__':
     unittest.main()

@@ -78,6 +78,58 @@ def _getLastIndexOf(string, char):
             resIdx = idx
     return resIdx
 
+def smallestWindowContainingAllDistinctChars(word):
+    charSet = set(word)
+    minWS = len(word)
+    for i in range(len(word)):
+        ws = 0
+        windowCharSet = set()
+        for ch in word[i:]:
+            windowCharSet.add(ch)
+            ws += 1
+            if windowCharSet == charSet and ws < minWS:
+                minWS = ws
+                break
+    return minWS
+
+def smallestWindowContainingAllDistinctCharsOptimized(word):
+    minWS = len(word)
+    charCount = [0]*256
+    start = 0
+    charSet = set(word)
+    distinctCount = len(charSet)
+    count = 0
+    startIdx = None
+    for i in range(len(word)):
+        charCount[ord(word[i])] += 1
+        if charCount[ord(word[i])] == 1:
+            count += 1
+        if (count == distinctCount):
+            while (charCount[ord(word[start])] > 1):
+                charCount[ord(word[start])] -= 1
+                start += 1
+
+            currMinWS = i - start + 1
+            if currMinWS < minWS:
+                minWS = currMinWS
+                startIdx = start
+    return minWS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 def isPalindromeProducible(string, k):
 
     def _isPalindromeProducibleRecurse(remainingString, delRemaining):

@@ -31,6 +31,55 @@ class Test_Matrix(unittest.TestCase):
         ]
         self.assertEqual(matrix.islandPerimeter(mat), 12)
 
+
+    def test_numberOfIslands(self):
+        mat = [
+            [0, 1, 0, 0, 0],
+            [1, 1, 1, 0, 0],
+            [1, 0, 0, 0, 0],
+        ]
+        self.assertEqual(matrix.numberOfIslands(mat), 1)
+
+        mat = [
+            [0, 1, 0, 0, 0],
+            [1, 1, 1, 0, 0],
+            [1, 0, 0, 0, 1],
+            [0, 0, 0, 0, 0],
+            [1, 0, 0, 1, 0],
+            [1, 0, 0, 0, 0],
+        ]
+        self.assertEqual(matrix.numberOfIslands(mat), 4)
+
+        mat = [
+            [0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+        ]
+        self.assertEqual(matrix.numberOfIslands(mat), 1)
+
+        mat = [
+            [0, 0, 0, 0, 0],
+            [0, 0, 1, 0, 0],
+            [0, 0, 1, 1, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+        ]
+        self.assertEqual(matrix.numberOfIslands(mat), 1)
+
+        mat = [
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+            [0, 0, 0, 0, 0],
+        ]
+        self.assertEqual(matrix.numberOfIslands(mat), 0)
+
 if __name__ == '__main__':
     unittest.main()
 

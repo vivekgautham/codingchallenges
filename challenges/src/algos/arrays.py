@@ -237,6 +237,14 @@ def maxSumWithoutAdjacentElements(arr):
         sumExcludingLatest = sumNotIncludingCurr
     return max(sumNotIncludingCurr, sumIncludingLatest)
 
+def smallestNumberNotInSubSetSum(arr):
+    res = 1
+    for e in arr:
+        if e <= res:
+            res += e
+    return res
+
+
 
 
 
