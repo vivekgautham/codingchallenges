@@ -244,6 +244,53 @@ def smallestNumberNotInSubSetSum(arr):
             res += e
     return res
 
+def stockSpan(arr):
+    stack = []
+    res = []
+    for i, e in enumerate(arr):
+        while stack and arr[stack[-1]] <= e:
+            stack.pop()
+
+        if not stack:
+            res.append(i+1)
+        else:
+            res.append(i-stack[-1])
+
+        stack.append(i)
+    return res
+
+def maxOccupancyTimeInterval(entryExitLogs, timestampKey='timestamp', typeKey='type', entryStr='enter', exitStr='exit', countStr='count'):
+    sortedEntries = sorted([log for log in entryExitLogs if log[typeKey] == entryStr], key=lambda l: l[timestampKey])
+    sortedExits = sorted([log for log in entryExitLogs if log[typeKey] == exitStr], key=lambda l: l[timestampKey])
+    maxCt = 0
+    currentCt = 0
+    start = 0
+    finalStart = 0
+    finalEnd = 0
+    i, mi = 0, len(sortedEntries)
+    j, mj = 0, len(sortedExits)
+    while (i < mi and j < mj):
+        if sortedEntries[i][timestampKey] <= sortedExits[j][timestampKey]:
+            # process entry
+            if start == 0:
+                start = sortedEntries[i][timestampKey]
+            currentCt += sortedEntries[i][countStr]
+            end = timestampKey
+            if currentCt > maxCt:
+                maxCt = currentCt
+                finalStart = start
+                finalEnd = sortedEntries[i][timestampKey]
+            i += 1
+        else:
+            # process exit
+            currentCt -= sortedExits[j][countStr]
+            if currentCt <= 0:
+                start = 0
+            j += 1
+    return (finalStart, finalEnd)
+
+
+
 
 
 

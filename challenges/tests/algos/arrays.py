@@ -91,5 +91,47 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.smallestNumberNotInSubSetSum([3, 4, 5]), 1)
         self.assertEqual(arrays.smallestNumberNotInSubSetSum([1, 2, 3, 4, 5]), 16)
 
+    def test_stockSpan(self):
+        self.assertEqual(arrays.stockSpan([7, 8, 6, 45, 3, 7]), [1, 2, 1, 4, 1, 2])
+        self.assertEqual(arrays.stockSpan([17, 8, 16, 45, 13, 77]), [1, 1, 2, 4, 1, 6])
+        self.assertEqual(arrays.stockSpan([10, 4, 5, 90, 120, 80]), [1, 1, 2, 4, 5, 1])
+        self.assertEqual(arrays.stockSpan([100, 80, 60, 70, 60, 75, 85]), [1, 1, 1, 2, 1, 4, 6])
+
+
+    def test_maxOccupancyTimeInterval(self):
+        self.assertEqual(
+            arrays.maxOccupancyTimeInterval([
+                {"timestamp": 1, "count": 10, "type": "enter"},
+                {"timestamp": 3, "count": 2, "type": "exit"},
+                {"timestamp": 5, "count": 1, "type": "enter"},
+                {"timestamp": 6, "count": 1, "type": "enter"},
+                {"timestamp": 7, "count": 1, "type": "enter"},
+                {"timestamp": 9, "count": 3, "type": "exit"},
+                {"timestamp": 10, "count": 8, "type": "exit"}
+            ]),
+            (1, 7)
+        )
+        self.assertEqual(
+            arrays.maxOccupancyTimeInterval([
+                {"timestamp": 1, "count": 3, "type": "enter"},
+                {"timestamp": 3, "count": 2, "type": "enter"},
+                {"timestamp": 5, "count": 1, "type": "exit"},
+                {"timestamp": 6, "count": 4, "type": "exit"},
+            ]),
+            (1, 3)
+        )
+        self.assertEqual(
+            arrays.maxOccupancyTimeInterval([
+                {"timestamp": 2, "count": 1, "type": "exit"},
+                {"timestamp": 1, "count": 1, "type": "enter"},
+                {"timestamp": 3, "count": 2, "type": "enter"},
+                {"timestamp": 4, "count": 2, "type": "enter"},
+                {"timestamp": 5, "count": 3, "type": "exit"},
+                {"timestamp": 6, "count": 1, "type": "exit"},
+            ]),
+            (3, 4)
+        )
+
+
 if __name__ == '__main__':
     unittest.main()

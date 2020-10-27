@@ -15,25 +15,31 @@ def countWays(n, k):
 
 def allWays(n, k):
     res = []
-    if n == 0 or k == 0: return [[]]
-    def _findWays(cur ,n, k, arr):
+    if isinstance(k, collections.Iterable):
+        karray = k
+    else:
+        karray = range(1, k+1)
+
+    if n == 0 or len(karray) == 0: return [[]]
+
+    def _findWays(cur, n, arr):
         if cur>n:
             return
         arr.append(cur)
         if cur == n:
-            k = 0
-            ll = []
+            previous = 0
+            outcome = []
             for e in arr:
-                ll.append(e-k)
-                k = e
-            res.append(ll)
-        for i in range(1, k+1):
-            _findWays(cur+i, n, k, arr)
+                outcome.append(e-previous)
+                previous = e
+            res.append(outcome)
+        for i in karray:
+            _findWays(cur+i, n, arr)
         arr.pop()
 
     arr = []
-    for i in range(1, k+1):
-        _findWays(i ,n, k, arr)
+    for i in karray:
+        _findWays(i, n, arr)
     return res
 
 def minimumCoins(total, denominations):
@@ -46,3 +52,31 @@ def minimumCoins(total, denominations):
                 break
             minCoins[i] = min(minCoins[i-denom]+1, minCoins[i])
     return minCoins[total]
+
+def cutRod(size, priceDict):
+    maxVals = []
+    distinctLengths = sorted(priceDict.keys())
+    for i in range(len(distinctLengths)):
+        allVals = []
+        for each in allWays(size, distinctLengths[:i+1]):
+            allVals.append(sum([priceDict[r] for r in each]))
+        maxVals.append(max(allVals))
+    return max(maxVals)
+
+def isThereSubSetSum(sum, subSet):
+    if not sum or sum in subSet: return True
+    cache = [[False for i in range(sum+1)] for j in range(len(subSet)+1)]
+    for e in cache:
+        e[0] = True
+    arr = list(subSet)
+    for i in range(1, len(subSet)+1):
+        for j in range(1, sum+1):
+            if j < arr[i-1]:
+                cache[i][j] = cache[i-1][j]
+            else:
+                cache[i][j] = cache[i-1][j] or cache[i-1][j-arr[i-1]]
+
+    return cache[len(subSet)][sum]
+
+
+

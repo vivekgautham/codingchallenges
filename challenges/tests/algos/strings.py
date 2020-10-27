@@ -56,10 +56,12 @@ class Test_String(unittest.TestCase):
         self.assertEqual(strings.smallestWindowContainingAllDistinctChars("acaadacdca"), 3)
 
     def test_smallestWindowContainingAllDistinctCharsOptimized(self):
+        self.assertEqual(strings.smallestWindowContainingAllDistinctCharsOptimized("xyyzyzyx"), 3)
         self.assertEqual(strings.smallestWindowContainingAllDistinctCharsOptimized("jiujitsu"), 5)
         self.assertEqual(strings.smallestWindowContainingAllDistinctCharsOptimized("caabcckbssaka"), 6)
         self.assertEqual(strings.smallestWindowContainingAllDistinctCharsOptimized("aabcbcdbca"), 4)
         self.assertEqual(strings.smallestWindowContainingAllDistinctCharsOptimized("acaadacdca"), 3)
+
 
 
 if __name__ == '__main__':
