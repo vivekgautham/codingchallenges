@@ -22,6 +22,18 @@ class Test_Numbers(unittest.TestCase):
         self.assertEqual(numbers.gcdInBulk([28, 56, 112]), 28)
         self.assertEqual(numbers.gcdInBulk([2, 3, 5]), 1)
 
+    def test_intToRoman(self):
+        self.assertEqual(numbers.intToRoman(3549), 'MMMDXLIX')
+        self.assertEqual(numbers.intToRoman(41), 'XLI')
+        self.assertEqual(numbers.intToRoman(44), 'XLIV')
+        self.assertEqual(numbers.intToRoman(45), 'XLV')
+
+
+    def test_romanToInt(self):
+        self.assertEqual(numbers.romanToInt('MMMDXLIX'), 3549)
+        self.assertEqual(numbers.romanToInt('XLI'), 41)
+        self.assertEqual(numbers.romanToInt('XLIV'), 44)
+        self.assertEqual(numbers.romanToInt('XLV'), 45)
 
 
 

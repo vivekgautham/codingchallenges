@@ -55,6 +55,27 @@ def longestPalindromeSubstr(s):
 
     return s[start:start+mL]
 
+def longestPalindromeSubstrAlternative(s):
+    pal = ['']
+
+    def _updatePal(low, high):
+        while low >= 0 and high < len(s) and s[low] == s[high]:
+            if len(pal[0]) < len(s[low:high+1]):
+                pal[0] = s[low:high+1]
+            low -= 1
+            high += 1
+
+    for i in range(1, len(s)):
+        high = i+1
+        low = i-1
+        _updatePal(low, high)
+        high = i
+        _updatePal(low, high)
+
+    return pal[0]
+
+
+
 def isPalindromeProducibleNaive(string, k):
     ''' Is Palindrome Producible by deleting atmost k characters '''
     if string == string[::-1]:
@@ -96,8 +117,7 @@ def smallestWindowContainingAllDistinctCharsOptimized(word):
     minWS = len(word)
     charCount = [0]*256
     start = 0
-    charSet = set(word)
-    distinctCount = len(charSet)
+    distinctCount = len(set(word))
     count = 0
     startIdx = None
     for i in range(len(word)):
@@ -115,19 +135,29 @@ def smallestWindowContainingAllDistinctCharsOptimized(word):
                 startIdx = start
     return minWS
 
+def largestSubStrContainingAtmostKDistinctChars(word, k):
+    charCount = [0]*256
+    start = 0
+    maxWS = 0
+    currentDistinctcount = 0
+    startIdx = None
+    for i in range(len(word)):
+        charCount[ord(word[i])] += 1
+        if charCount[ord(word[i])] == 1:
+            currentDistinctcount += 1
 
+        while (currentDistinctcount > k and charCount[ord(word[start])] > 0):
+            charCount[ord(word[start])] -= 1
+            if charCount[ord(word[start])] == 0:
+                currentDistinctcount -= 1
+            start += 1
 
+        currMaxWS = i - start + 1
+        if currMaxWS > maxWS:
+            maxWS = currMaxWS
+            startIdx = start
 
-
-
-
-
-
-
-
-
-
-
+    return word[startIdx:startIdx+maxWS]
 
 
 def isPalindromeProducible(string, k):
@@ -167,6 +197,55 @@ def isPalindromeProducible(string, k):
     lcsStatus = l <= k
     recStatus = _isPalindromeProducibleRecurse(string, k)
     return lcsStatus and recStatus
+
+def reverseWordsBetweenDelimiters(string, delimiters):
+    stringStack = []
+    delimiterStack = []
+    startsWithDelimiters = string[0] in delimiters if string else False
+    i = 0
+    delimList = []
+    curSt = ''
+
+    while i < len(string):
+        if string[i] in delimiters:
+            if curSt:
+                stringStack.append(curSt)
+                curSt = ''
+            delimList.append(string[i])
+        else:
+            if delimList:
+                delimiterStack.append(delimList)
+                delimList = []
+            curSt += string[i]
+
+        i += 1
+    if curSt:
+        stringStack.append(curSt)
+    if delimList:
+        delimiterStack.append(delimList)
+
+    resStr = ''
+    i = 0
+    if startsWithDelimiters:
+        resStr += ''.join(delimiterStack[i])
+        i += 1
+    while stringStack and i < len(delimiterStack):
+        resStr += stringStack.pop()
+        resStr += ''.join(delimiterStack[i])
+        i += 1
+    if i < len(delimiterStack):
+        resStr += ''.join(delimiterStack[i])
+        i += 1
+    if stringStack:
+        resStr += stringStack.pop()
+    return resStr
+
+
+
+
+
+
+
 
 
 

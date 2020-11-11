@@ -29,6 +29,15 @@ class Test_Trees(unittest.TestCase):
         res = trees.levelOrderTraversal(root)
         self.assertEqual(res, [20, 10, 26, 4, 18, 24, 27, 14, 19, 13, 15])
 
+    def test_inorderSuccessor(self):
+        root = trees.Node(10)
+        root.left = trees.Node(5)
+        root.right = trees.Node(30)
+        root.right.left = trees.Node(22)
+        root.right.right = trees.Node(35)
+        self.assertEqual(trees.inorderSuccessor(root, 22), 30)
+
+
     def test_Fenwick(self):
         arr = [2, 1, 1, 3, 2]
         fenwick = trees.FenwickTree(arr)

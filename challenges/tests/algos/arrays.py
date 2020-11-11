@@ -5,6 +5,8 @@ class Test_Arrays(unittest.TestCase):
 
     def test_kadane(self):
         self.assertEqual(arrays.kadane([1, 2, -2, -4, 6, 7, -2]), 13)
+        self.assertEqual(arrays.kadane([34, -50, 42, 14, -5, 86]), 137)
+        self.assertEqual(arrays.kadane([-5, -1, -8, -9]), -1)
 
     def test_maxAreaRectangleHistogram(self):
         self.assertEqual(arrays.maxRectangleArea([1, 2, 3, 4, 5, 3, 3, 2]), 15)
@@ -53,6 +55,11 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.findMinOperationToSortedArray([1, 2, 2, 4]), 0)
         self.assertEqual(arrays.findMinOperationToSortedArray([1, 5, 4, 2, 3]), 4)
 
+    def test_findInversion(self):
+        self.assertEqual(arrays.findInversions([8, 4, 2, 1]), 6)
+        self.assertEqual(arrays.findInversions([1, 20, 6, 4, 5]), 5)
+
+
     def test_hIndex(self):
         self.assertEqual(arrays.hIndex([2, 7, 9, 12, 14]), 4)
         self.assertEqual(arrays.hIndex([0, 0, 2, 3, 4]), 2)
@@ -75,9 +82,16 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.median([2]), 2)
         self.assertEqual(arrays.median([2, 1]), 1.5)
         self.assertEqual(arrays.median([2, 1, 3]), 2)
-
         self.assertEqual(arrays.median([4, 2, 1, 3]), arrays.naiveMedian([4, 2, 1, 3]))
         self.assertEqual(arrays.median([9, 1, 0, 2, 3, 4, 6, 8, 7, 10, 5]), arrays.naiveMedian([9, 1, 0, 2, 3, 4, 6, 8, 7, 10, 5]))
+
+    def test_sortedArrayElementIndex(self):
+        self.assertEqual(arrays.sortedArrayElementIndex([13, 18, 25, 2, 8, 10], 10), 5)
+        self.assertEqual(arrays.sortedArrayElementIndex([13], 13), 0)
+        self.assertEqual(arrays.sortedArrayElementIndex([13, 18], 18), 1)
+        self.assertEqual(arrays.sortedArrayElementIndex([2, 3, 1], 3), 1)
+        self.assertEqual(arrays.sortedArrayElementIndex([2, 3, 1], 1), 2)
+        self.assertEqual(arrays.sortedArrayElementIndex([2, 3, 1], 2), 0)
 
     def test_maxSumWithoutAdjacentElements(self):
         self.assertEqual(arrays.maxSumWithoutAdjacentElements([6, 13, 97, 100, 7]), 113)

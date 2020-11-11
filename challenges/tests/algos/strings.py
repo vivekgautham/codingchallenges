@@ -19,6 +19,13 @@ class Test_String(unittest.TestCase):
         self.assertEqual(strings.longestPalindromeSubstr("abba"), "abba")
         self.assertEqual(strings.longestPalindromeSubstr("abcd"), "")
 
+    def test_longestPalindromeSubstrAlternative(self):
+        self.assertEqual(strings.longestPalindromeSubstrAlternative("bananas"), "anana")
+        self.assertEqual(strings.longestPalindromeSubstrAlternative("aabcdcb"), "bcdcb")
+        self.assertEqual(strings.longestPalindromeSubstrAlternative("aba"), "aba")
+        self.assertEqual(strings.longestPalindromeSubstrAlternative("abba"), "abba")
+        self.assertEqual(strings.longestPalindromeSubstrAlternative("abcd"), "")
+
     def test_isPalindromeProducibleNaive(self):
         self.assertEqual(strings.isPalindromeProducibleNaive("waterrfetawx", 2), True)
         self.assertEqual(strings.isPalindromeProducibleNaive("waterrfetawx", 1), False)
@@ -62,6 +69,18 @@ class Test_String(unittest.TestCase):
         self.assertEqual(strings.smallestWindowContainingAllDistinctCharsOptimized("aabcbcdbca"), 4)
         self.assertEqual(strings.smallestWindowContainingAllDistinctCharsOptimized("acaadacdca"), 3)
 
+    def test_largestSubStrContainingAtmostKDistinctChars(self):
+        self.assertEqual(strings.largestSubStrContainingAtmostKDistinctChars("abcba", 2), "bcb")
+        self.assertEqual(strings.largestSubStrContainingAtmostKDistinctChars("acaadacdca", 2), "acaa")
+        self.assertEqual(strings.largestSubStrContainingAtmostKDistinctChars("acaadacdca", 3), "acaadacdca")
+        self.assertEqual(strings.largestSubStrContainingAtmostKDistinctChars("caabcckbssaka", 1), "aa")
+        self.assertEqual(strings.largestSubStrContainingAtmostKDistinctChars("caabcckbssaka", 2), "caa")
+        self.assertEqual(strings.largestSubStrContainingAtmostKDistinctChars("caabcckbssaka", 3), "caabcc")
+
+    def test_reverseWordsBetweenDelimiters(self):
+        self.assertEqual(strings.reverseWordsBetweenDelimiters("hello//world:here", {'/', ':'}), "here//world:hello")
+        self.assertEqual(strings.reverseWordsBetweenDelimiters("hello/world:here", {'/', ':'}), "here/world:hello")
+        self.assertEqual(strings.reverseWordsBetweenDelimiters("hello/world:here/", {'/', ':'}), "here/world:hello/")
 
 
 if __name__ == '__main__':

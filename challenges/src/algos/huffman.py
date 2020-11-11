@@ -42,7 +42,6 @@ class HuffmanTree:
             self._computeRecurse(node.right, code=code+'1', start=start+1)
 
         if (not node.left and not node.right):
-            print('{0} : {1}'.format(node.symbol, code))
             self.codes[node.symbol] = code
 
     def computeCodes(self):

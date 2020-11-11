@@ -29,6 +29,18 @@ def buildTree(inorder, preorder):
     root = _buildTreeRecurse(inorder, preorder, 0, len(inorder)-1)
     return root
 
+def inorder(root, arr):
+    if root is None:
+        return
+    inorder(root.left, arr)
+    arr.append(root.value)
+    inorder(root.right, arr)
+
+def inorderSuccessor(root, elem):
+    arr = []
+    inorder(root, arr)
+    return arr[arr.index(elem)+1]
+
 def levelOrderTraversal(root, lo=[]):
 
     if root is None: return lo
@@ -45,6 +57,25 @@ def levelOrderTraversal(root, lo=[]):
         if s.right:
             q.append(s.right)
     return lo
+
+def getLevelDepth(root):
+
+    levelDepthDict = {}
+    if root is None: return levelDepthDict
+
+    q = deque()
+    q.append((root, 0))
+
+    while q:
+        s, d = q.popleft()
+
+        levelDepthDict[s.value] = d
+        if s.left:
+            q.append((s.left, d+1))
+        if s.right:
+            q.append((s.right, d+1))
+    return levelDepthDict
+
 
 @dataclass
 class FenwickTree():

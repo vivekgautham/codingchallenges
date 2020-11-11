@@ -159,6 +159,57 @@ def findMinOperationToSortedArray(array):
 
     return res
 
+
+def findInversions(arr):
+    ct = [0]
+    temp = [None]*len(arr)
+
+    def _merge(arr, left, mid, right):
+        invCt = 0
+        i = left
+        j = mid
+        k = left
+        while (i < mid and j <= right):
+            if arr[i] < arr[j]:
+                temp[k] = arr[i]
+                i += 1
+            else:
+                temp[k] = arr[j]
+                j += 1
+                invCt += (mid - i)
+            k += 1
+
+        while (i < mid):
+            temp[k] = arr[i]
+            i += 1
+            k += 1
+
+        while (j <= right):
+            temp[k] = arr[j]
+            j += 1
+            k += 1
+
+        for p in range(left, right+1):
+            arr[p] = temp[p]
+        return invCt
+
+    def _mergeSort(arr, left, right):
+        invCt = 0
+        if (left < right):
+            mid = (left + right)//2
+            invCt += _mergeSort(arr, left, mid)
+            invCt += _mergeSort(arr, mid+1, right)
+
+            invCt += _merge(arr, left, mid+1, right)
+        return invCt
+
+    invCt = _mergeSort(arr, 0, len(arr)-1)
+    print(temp)
+    return invCt
+
+
+
+
 def hIndex(citations):
     left = 0
     right = len(citations)-1
@@ -170,6 +221,40 @@ def hIndex(citations):
         else:
             left = mid+1
     return len(citations) - (right+1)
+
+def sortedArrayElementIndex(arr, elem):
+    highPivot =  None
+    low = 0
+    high = len(arr)-1
+    randomPivot = (low + high)//2
+    while low < high:
+        if (arr[randomPivot+1] < arr[randomPivot]) and (arr[randomPivot-1] < arr[randomPivot]):
+            highPivot = randomPivot
+            break
+        else:
+            if (arr[randomPivot+1] < arr[randomPivot]):
+                high = randomPivot-1
+            else:
+                low = randomPivot+1
+            randomPivot = (low + high)//2
+
+    highPivot = highPivot or randomPivot
+    if elem == arr[highPivot]:
+        return highPivot
+    elemIndex = None
+    low = 0 if arr[0] <= elem else highPivot+1
+    high = highPivot-1 if arr[0] <= elem else len(arr)-1
+    while low < high:
+        if (arr[(low+high)//2] == elem):
+            elemIndex = (low+high)//2
+            break
+        else:
+            if (arr[(low+high)//2] < elem):
+                low = (low+high)//2+1
+            else:
+                high = (low+high)//2-1
+    return elemIndex if elemIndex is not None else (low if (arr[low] == elem) else None)
+
 
 def sortedArrayMedian(arr):
     if len(arr) % 2 == 1:
@@ -275,7 +360,6 @@ def maxOccupancyTimeInterval(entryExitLogs, timestampKey='timestamp', typeKey='t
             if start == 0:
                 start = sortedEntries[i][timestampKey]
             currentCt += sortedEntries[i][countStr]
-            end = timestampKey
             if currentCt > maxCt:
                 maxCt = currentCt
                 finalStart = start
@@ -288,24 +372,5 @@ def maxOccupancyTimeInterval(entryExitLogs, timestampKey='timestamp', typeKey='t
                 start = 0
             j += 1
     return (finalStart, finalEnd)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
