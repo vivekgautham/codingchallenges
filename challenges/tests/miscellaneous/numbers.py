@@ -35,6 +35,17 @@ class Test_Numbers(unittest.TestCase):
         self.assertEqual(numbers.romanToInt('XLIV'), 44)
         self.assertEqual(numbers.romanToInt('XLV'), 45)
 
+    def test_highestPossibleNumberFromArray(self):
+        self.assertEqual(numbers.highestPossibleNumberFromArray([10, 7, 76, 415]), 77641510)
+        self.assertEqual(numbers.highestPossibleNumberFromArray([10, 7, 76, 766]), 77676610)
+        self.assertEqual(numbers.highestPossibleNumberFromArray([10, 7, 76, 767]), 77677610)
+        self.assertEqual(numbers.highestPossibleNumberFromArray([10, 7, 78, 76, 415]), 7877641510)
+        self.assertEqual(numbers.highestPossibleNumberFromArray([54, 546, 548, 60]), 6054854654)
+        self.assertEqual(numbers.highestPossibleNumberFromArray([1, 34, 3, 98, 9, 76, 45, 4]), 998764543431)
+
+
+
+
 
 
 

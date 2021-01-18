@@ -204,10 +204,7 @@ def findInversions(arr):
         return invCt
 
     invCt = _mergeSort(arr, 0, len(arr)-1)
-    print(temp)
     return invCt
-
-
 
 
 def hIndex(citations):

@@ -73,4 +73,17 @@ def romanToInt(romanNumber):
     return res
 
 
+def highestPossibleNumberFromArray(arr):
+
+    def _digit(x, y):
+        x = str(x)
+        y = str(y)
+        return int(x+y) - int(y+x)
+
+
+    arr.sort(key=functools.cmp_to_key(_digit), reverse=True)
+    return int(''.join(map(str, arr)))
+
+
+
 

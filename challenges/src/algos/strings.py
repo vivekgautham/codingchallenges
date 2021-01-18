@@ -241,6 +241,36 @@ def reverseWordsBetweenDelimiters(string, delimiters):
     return resStr
 
 
+def ladderLength(self, beginWord, endWord, wordList):
+    from collections import defaultdict, deque
+    connections = defaultdict(set)
+    allWords = list(set(([beginWord] + wordList)))
+    for i in range(len(allWords)):
+        for j in range(i+1, len(allWords)):
+            if sum([1 if ch1 != ch2 else 0 for ch1, ch2 in zip(allWords[i], allWords[j])]) == 1:
+                connections[allWords[i]].add(allWords[j])
+                connections[allWords[j]].add(allWords[i])
+
+    visitedDict = {w:False for w in allWords}
+    q = deque([(beginWord, 1)])
+    visitedDict[beginWord] = True
+    level = 0
+    while q:
+        wo, l = q.popleft()
+
+        for each in connections.get(wo, []):
+            if not visitedDict[each]:
+                q.append((each, l+1))
+                visitedDict[each] = True
+                if each == endWord:
+                    level = l+1
+                    break
+        if level:
+            break
+
+    return level
+
+
 
 
 
