@@ -271,7 +271,50 @@ def ladderLength(self, beginWord, endWord, wordList):
     return level
 
 
+def repeatedStringMatch(a, b):
+    if not len(b): return 0
+    if len(a) >= len(b):
+        if b in a: return 1
+        else:
+            a += a
+            if b in a:
+                return 2
+            else:
+                return -1
+    try:
+        astart = b.index(a)
+    except ValueError:
+        astart = None
 
+    if astart is not None:
+        try:
+            bInaStart = a.index(b[:astart])
+        except ValueError:
+            bInaStart = None
+            return -1
+    else:
+        ct = 1
+        while b not in a:
+            if len(a) > len(b):
+                return -1
+            a += a
+            ct += 1
+        return ct
+
+    stSet = set([a])
+    check = True
+    ct = 0 if astart == 0 else 1
+    for i in range(astart, len(b)-len(a)+1, len(a)):
+        substr = b[i:i+len(a)]
+        check = check and (substr in stSet)
+        if check:
+            ct += 1
+
+    i += len(a)
+    if check and i < len(b):
+        check = check and a.startswith(b[i:])
+        ct += 1
+    return ct if check else -1
 
 
 

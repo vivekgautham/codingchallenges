@@ -83,5 +83,11 @@ class Test_String(unittest.TestCase):
         self.assertEqual(strings.reverseWordsBetweenDelimiters("hello/world:here/", {'/', ':'}), "here/world:hello/")
 
 
+    def test_repeatedStringMatching(self):
+        self.assertEqual(strings.repeatedStringMatch('aab', 'ba'), 2)
+        self.assertEqual(strings.repeatedStringMatch('cda', 'ba'), -1)
+        self.assertEqual(strings.repeatedStringMatch('dca', 'adcadcadc'), 4)
+        self.assertEqual(strings.repeatedStringMatch('pda', 'apd'), 2)
+
 if __name__ == '__main__':
     unittest.main()
