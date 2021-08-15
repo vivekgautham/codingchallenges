@@ -44,6 +44,15 @@ class Test_Numbers(unittest.TestCase):
         self.assertEqual(numbers.highestPossibleNumberFromArray([1, 34, 3, 98, 9, 76, 45, 4]), 998764543431)
 
 
+    def test_isNumber(self):
+        nums = ["2", "0089", "-0.1", "+3.14", "4.", "-.9", "2e10", "-8115e957", "-90E3", "3e+7", "1.e9", "+6e-1", "53.5e93", "-123.456e789"]
+        for e in nums:
+            self.assertTrue(numbers.isNumber(e))
+        nonNums = ["abc", "1a", "1e", "e3", "99e2.5", "--6", "-+3", "95a54e53", "-e9", "1.e9-8"]
+        for e in nonNums:
+            self.assertFalse(numbers.isNumber(e))
+
+
 
 
 

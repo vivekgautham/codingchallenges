@@ -89,5 +89,16 @@ class Test_String(unittest.TestCase):
         self.assertEqual(strings.repeatedStringMatch('dca', 'adcadcadc'), 4)
         self.assertEqual(strings.repeatedStringMatch('pda', 'apd'), 2)
 
+    def test_minimumAdjSwapsToAnagram(self):
+        self.assertEqual(strings.minimumAdjSwapsToAnagram('abcd', 'cdab'), 4)
+        self.assertEqual(strings.minimumAdjSwapsToAnagram('abcfdegji', 'fjiacbdge'), 17)
+        self.assertEqual(strings.minimumAdjSwapsToAnagram('acdas', 'saadc'), 7)
+
+    def test_canStringBeMadeIntoPalindrome(self):
+        self.assertTrue(strings.canStringBeMadeIntoPalindrome('slsaals'))
+        self.assertFalse(strings.canStringBeMadeIntoPalindrome('post'))
+        self.assertTrue(strings.canStringBeMadeIntoPalindrome('sammas'))
+        self.assertTrue(strings.canStringBeMadeIntoPalindrome('massa'))
+
 if __name__ == '__main__':
     unittest.main()

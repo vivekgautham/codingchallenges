@@ -219,6 +219,7 @@ def hIndex(citations):
             left = mid+1
     return len(citations) - (right+1)
 
+
 def sortedArrayElementIndex(arr, elem):
     highPivot =  None
     low = 0

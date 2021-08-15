@@ -316,6 +316,37 @@ def repeatedStringMatch(a, b):
         ct += 1
     return ct if check else -1
 
+def minimumAdjSwapsToAnagram(s, t):
+    i = 0
+    j = 0
+    ct = 0
+    s = list(s)
+    t = list(t)
+    while i < len(s):
+        j = i
+
+        while s[j] != t[i]:
+            j += 1
+
+        while j > i:
+            s[j], s[j-1] = s[j-1], s[j]
+            j -= 1
+            ct += 1
+
+        i += 1
+    return ct
+
+def canStringBeMadeIntoPalindrome(s):
+    freqDict = [0]*26
+    for ch in s:
+        freqDict[ord(ch) - 96] += 1
+    odds = 0
+    for e in freqDict:
+        odds += int(e % 2 == 1)
+    if len(s)%2 == 1:
+        return odds == 1
+    else:
+        return odds == 0
 
 
 

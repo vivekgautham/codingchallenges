@@ -13,6 +13,8 @@ def countWays(n, k):
         cache[i] += 1 if i in karray else 0
     return cache[-1]
 
+
+
 def allWays(n, k):
     res = []
     if isinstance(k, collections.Iterable):
@@ -41,6 +43,43 @@ def allWays(n, k):
     for i in karray:
         _findWays(i, n, arr)
     return res
+
+def allDistinctWays(n, karray):
+    res = []
+    if n == 0 or len(karray) == 0: return [[]]
+
+    def _findDistinctWays(idx, remaining, l):
+        if remaining < karray[idx]:
+            return
+        else:
+            l.append(karray[idx])
+            remaining -= karray[idx]
+            if remaining == 0:
+                res.append([e for e in l])
+            else:
+                for i in range(idx+1, len(karray)):
+                    _findDistinctWays(i, remaining, l)
+        l.pop()
+
+    for idx, e in enumerate(karray):
+        l = []
+        _findDistinctWays(idx, n, l)
+    return res
+
+def subSetDivideMinimalDifferenceSum(arr):
+    halfSum = sum(arr)//2
+    l = 1
+    h = halfSum
+    ways = None
+    while halfSum:
+        ways = allDistinctWays(halfSum, arr)
+        if ways:
+            break
+        halfSum -= 1
+    s1 = ways[0]
+    s2 = [e for e in arr if e not in s1]
+    return s1, s2
+
 
 def minimumCoins(total, denominations):
     minCoins = [sys.maxsize]*(total+1)

@@ -87,3 +87,57 @@ def highestPossibleNumberFromArray(arr):
 
 
 
+def isNumber(s: str) -> bool:
+
+    def _checkInt(inte):
+        if not inte: return False
+        signCt = 0
+        numCt = 0
+        i = 0
+        while i < len(inte) and inte[i] in ['+', '-']:
+            signCt += 1
+            i += 1
+        if signCt > 1: return False
+        while i < len(inte) and ord('0') <= ord(inte[i]) <= ord('9'):
+            numCt += 1
+            i += 1
+        return (numCt > 0) and (numCt + signCt) == len(inte)
+
+
+    def _checkDec(dec):
+        if not dec: return False
+        signCt = 0
+        dotCt = 0
+        digBeforeDot = 0
+        digAfterDot = 0
+        i = 0
+        while i < len(dec) and dec[i] in ['+', '-']:
+            signCt += 1
+            i += 1
+        if signCt > 1: return False
+        while i < len(dec) and ord('0') <= ord(dec[i]) <= ord('9'):
+            digBeforeDot += 1
+            i += 1
+        while i < len(dec) and dec[i] == '.':
+            dotCt += 1
+            i += 1
+        if dotCt > 1: return False
+        while i < len(dec) and ord('0') <= ord(dec[i]) <= ord('9'):
+            digAfterDot += 1
+            i += 1
+        return ((signCt + dotCt + digBeforeDot + digAfterDot) == len(dec)) and (digBeforeDot or digAfterDot)
+
+    s = s.lower()
+    comp = s.split('e')
+    #print(comp)
+    if len(comp) in [1, 2]:
+        decOrInt = comp[0]
+        decOrIntCheck = (_checkDec(decOrInt) or _checkInt(decOrInt))
+        #print(decOrIntCheck, _checkDec(decOrInt), _checkInt(decOrInt))
+        if len(comp) == 2:
+            inte = comp[1]
+            return _checkInt(inte) and decOrIntCheck
+        else:
+            return decOrIntCheck
+    else:
+        return False

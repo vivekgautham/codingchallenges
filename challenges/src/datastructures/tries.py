@@ -155,3 +155,41 @@ def typeaheadSearch(queries):
             tt.delete(each[1])
     return allResults
 
+
+class TrieNode:
+
+    def __init__(self):
+        self.children = [None]*26
+        self.isWord = False
+
+
+class Trie:
+
+    def __init__(self) -> None:
+        self.root = TrieNode()
+
+    def insert(self, word):
+        curNode = self.root
+        for ch in word:
+            if not curNode.children[ord(ch)-ord('a')]:
+                curNode.children[ord(ch)-ord('a')] = TrieNode()
+                curNode = curNode.children[ord(ch)-ord('a')]
+        curNode.isWord = True
+
+    def search(self, string):
+        curNode = self.root
+        curStr = ''
+        l = []
+        for ch in string:
+            if ch == 'y':
+                _ = 2
+            if curNode.children[ord(ch)-ord('a')]:
+                curNode = curNode.children[ord(ch)-ord('a')]
+                curStr += ch
+                if curNode.isWord:
+                    l.append(curStr)
+                    curStr = ''
+                    curNode = self.root
+            else:
+                return []
+        return l if not curStr else []

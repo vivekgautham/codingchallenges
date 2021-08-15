@@ -102,6 +102,55 @@ class FenwickTree():
         return s
 
 
+class TreeAncestor:
+
+    def __init__(self, n: int, parent: List[int]):
+        self.tree = collections.defaultdict(set)
+        for i, e in enumerate(parent):
+            self.tree[e].add(i)
+
+    def getKthAncestor(self, node: int, k: int) -> int:
+        ans = ['']
+        def _dfs(nd, path):
+            if node in self.tree[nd]:
+                ans[0] = path
+            else:
+                for e in self.tree.get(nd, []):
+                    newpath = path + '{e}->'.format(e=e)
+                    #print(newpath)
+                    _dfs(e, newpath)
+
+        #print(self.tree)
+        _dfs(-1, '-1->')
+        #print(ans)
+        l = ans[0].rstrip('->').split('->')[::-1]
+        #print(l)
+        return l[k-1]
+
+class TreeAncestor:
+
+    def __init__(self, n: int, parent: List[int]):
+        self.childrenToParent = {}
+        for i, e in enumerate(parent):
+            self.childrenToParent[i] = e
+        #print(self.childrenToParent)
+        self.treeUpwards = {}
+        for node in range(n):
+            self.treeUpwards[node] = self._getToRoot(node)
+        print(self.treeUpwards)
+    def _getToRoot(self, node):
+        if node == -1:
+            return []
+        elif node in self.treeUpwards:
+            return self.treeUpwards[node]
+        else:
+            par = self.childrenToParent[node]
+            return [par] + self._getToRoot(par)
+
+
+    def getKthAncestor(self, node: int, k: int) -> int:
+        return self.treeUpwards[node][k-1] if k < len(self.treeUpwards[node]) else -1
+
 
 
 

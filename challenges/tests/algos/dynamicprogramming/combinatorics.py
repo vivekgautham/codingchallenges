@@ -29,5 +29,8 @@ class Test_Combinatorics(unittest.TestCase):
         self.assertEqual(combinatorics.isThereSubSetSum(9, {4, 1, 10, 12, 5, 2}), True)
         self.assertEqual(combinatorics.isThereSubSetSum(3, {1, 5, 2, 5}), True)
 
+    def test_subSetDivideMinimalDifferenceSum(self):
+        self.assertEqual(combinatorics.subSetDivideMinimalDifferenceSum([5, 10, 15, 20, 25]), ([5, 10, 20], [15, 25]))
+
 if __name__ == '__main__':
     unittest.main()

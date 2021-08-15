@@ -4,6 +4,16 @@ import functools
 
 class Test_Tries(unittest.TestCase):
 
+    def test_TrieTree(self):
+        t = tries.Trie()
+        words = ['quick', 'brown', 'the', 'fox',]
+        for word in words:
+            t.insert(word)
+        self.assertEqual(t.search("thequickbrownfox"), ['the', 'quick', 'brown', 'fox'] )
+        self.assertEqual(t.search("thequickbrownfoxy"), [] )
+        self.assertEqual(t.search("thesdquickbrodfwnfoxy"), [] )
+        self.assertEqual(t.search("thequickbrown"), ['the', 'quick', 'brown'] )
+
     def test_typeahead(self):
 
         res = tries.typeaheadSearch([

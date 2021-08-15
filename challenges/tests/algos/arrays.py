@@ -31,6 +31,7 @@ class Test_Arrays(unittest.TestCase):
         self.assertEqual(arrays.rgbSort(['B', 'G', 'R']), ['R', 'G', 'B'])
         self.assertEqual(arrays.rgbSort(['B', 'G', 'B', 'R', 'G']), ['R', 'G', 'G', 'B', 'B'])
         self.assertEqual(arrays.rgbSort(['R', 'B', 'G', 'B', 'R']), ['R', 'R', 'G', 'B', 'B'])
+        self.assertEqual(arrays.rgbSort(['G', 'B', 'R']), ['R', 'G', 'B'])
 
     def test_NonDups(self):
         self.assertEqual(arrays.detectNonDupsInNDupsArray([6,1,3,3,3,6,6]), 1)
@@ -60,6 +61,7 @@ class Test_Arrays(unittest.TestCase):
     def test_findInversion(self):
         self.assertEqual(arrays.findInversions([8, 4, 2, 1]), 6)
         self.assertEqual(arrays.findInversions([1, 20, 6, 4, 5]), 5)
+        self.assertEqual(arrays.findInversions([1, 0, 2]), 1)
 
 
     def test_hIndex(self):
